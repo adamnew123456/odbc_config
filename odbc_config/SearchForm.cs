@@ -79,7 +79,7 @@ namespace odbc_config
             UpdateDSNList();
         }
 
-        private void searchResults_DoubleClick(object sender, EventArgs e)
+        private DSNInfo? GetSelectedDSN(bool defaultToFirst)
         {
             DSNInfo? selection = null;
             for (var i = 0; i < FoundDSNs.Count; i++)
@@ -93,17 +93,42 @@ namespace odbc_config
 
             if (!selection.HasValue)
             {
-                if (FoundDSNs.Count != 1)
-                {
-                    return;
-                }
-                else
+                if (FoundDSNs.Count == 1 && defaultToFirst)
                 {
                     selection = FoundDSNs[0];
                 }
             }
 
-            ConfigureDSN(selection.Value);
+            return selection;
+        }
+
+        private void searchResults_DoubleClick(object sender, EventArgs e)
+        {
+            DSNInfo? selection = GetSelectedDSN(true);
+            if (!selection.HasValue)
+            {
+                ConfigureDSN(selection.Value);
+            }
+        }
+
+        private void searchResults_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                DSNInfo? selection = GetSelectedDSN(false);
+                if (selection.HasValue)
+                {
+                    ConfigureDSN(selection.Value);
+                }
+            }
+            else if (e.KeyCode == Keys.Up && SearchResults.SelectedIndex > 0)
+            {
+                SearchResults.SelectedIndex--;
+            }
+            else if (e.KeyCode == Keys.Down && SearchResults.SelectedIndex < SearchResults.Items.Count - 1)
+            {
+                SearchResults.SelectedIndex++;
+            }
         }
 
         private void searchText_TextChanged(object sender, EventArgs e)
@@ -111,11 +136,16 @@ namespace odbc_config
             UpdateDSNList();
         }
 
-        private void SearchText_KeyUp(object sender, KeyEventArgs e)
+        private void searchText_KeyUp(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter && FoundDSNs.Count == 1)
             {
                 ConfigureDSN(FoundDSNs[0]);
+            }
+            else if (e.KeyCode == Keys.Down)
+            {
+                SearchResults.SelectedIndex = 0;
+                SearchResults.Focus();
             }
         }
     }

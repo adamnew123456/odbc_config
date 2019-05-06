@@ -79,7 +79,7 @@ namespace odbc_config
                     // contain any useful information if it is
                     if (dsnName == "") continue;
 
-                    var info = new DSNInfo(DSNType.User, dataSources.GetValue(dsnName) as string, dsnName);
+                    var info = new DSNInfo(DSNType.System, dataSources.GetValue(dsnName) as string, dsnName);
                     if (searchString == null)
                     {
                         dsnInfos.Add(Tuple.Create(0, info));

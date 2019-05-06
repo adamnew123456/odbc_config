@@ -43,7 +43,7 @@
             this.SearchText.Text = "Search...";
             this.SearchText.TextChanged += new System.EventHandler(this.searchText_TextChanged);
             this.SearchText.Enter += new System.EventHandler(this.searchText_Enter);
-            this.SearchText.KeyUp += new System.Windows.Forms.KeyEventHandler(this.SearchText_KeyUp);
+            this.SearchText.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchText_KeyUp);
             this.SearchText.Leave += new System.EventHandler(this.searchText_Leave);
             // 
             // SearchResults
@@ -57,6 +57,7 @@
             this.SearchResults.Size = new System.Drawing.Size(783, 407);
             this.SearchResults.TabIndex = 1;
             this.SearchResults.DoubleClick += new System.EventHandler(this.searchResults_DoubleClick);
+            this.SearchResults.KeyUp += new System.Windows.Forms.KeyEventHandler(this.searchResults_KeyUp);
             // 
             // SearchForm
             // 
