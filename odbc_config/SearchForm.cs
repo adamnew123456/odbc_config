@@ -105,7 +105,7 @@ namespace odbc_config
         private void searchResults_DoubleClick(object sender, EventArgs e)
         {
             DSNInfo? selection = GetSelectedDSN(true);
-            if (!selection.HasValue)
+            if (selection.HasValue)
             {
                 ConfigureDSN(selection.Value);
             }
