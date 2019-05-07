@@ -7,10 +7,13 @@ finding and editing DSNs when you have a lot of them.
 
 The controls are probably what you'd expect. There are three ways you can summon the configuration window for a particular DSN:
 
-- If you have more than one search result, double-click the one you want.
+- If you have more than one search result, double-click the one you want or select it and press enter.
 - If you have only one search result, you can either:
     - Press enter inside of the search bar, or 
     - Double-click anywhere in the search results.
+
+You can also enter the search listing by hitting the down key within the search
+box, and navigate the search entries using your arrow keys.
 
 # How Do I Build It?
 
