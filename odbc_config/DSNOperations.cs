@@ -52,13 +52,14 @@ namespace odbc_config
             foreach (var component in path.Split('\\'))
             {
                 var subkey = key.OpenSubKey(component, RegistryKeyPermissionCheck.ReadSubTree);
+                var keyName = key.Name;
                 if (!isBaseKey)
                 {
                     key.Close();
                 }
 
                 isBaseKey = false;
-                key = subkey ?? throw new ArgumentException("Could not find subkey " + component + " on key " + key.Name);
+                key = subkey ?? throw new ArgumentException("Could not find subkey " + component + " on key " + keyName);
             }
 
             return key;
