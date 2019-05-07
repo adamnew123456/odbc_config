@@ -121,14 +121,6 @@ namespace odbc_config
                     ConfigureDSN(selection.Value);
                 }
             }
-            else if (e.KeyCode == Keys.Up && SearchResults.SelectedIndex > 0)
-            {
-                SearchResults.SelectedIndex--;
-            }
-            else if (e.KeyCode == Keys.Down && SearchResults.SelectedIndex < SearchResults.Items.Count - 1)
-            {
-                SearchResults.SelectedIndex++;
-            }
         }
 
         private void searchText_TextChanged(object sender, EventArgs e)
